@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
  * Created by Alex on 05.07.2017.
  */
 public class SessionUtil {
+
     private Session session;
     private Transaction transaction;
 
@@ -23,8 +24,8 @@ public class SessionUtil {
     }
 
     public Session openTransactionSession(){
-        session = getSession();
-        transaction = session.getTransaction();
+        session = openSession();
+        transaction = session.beginTransaction();
         return session;
     }
 

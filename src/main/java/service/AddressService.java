@@ -50,6 +50,8 @@ public class AddressService extends SessionUtil implements AddressDao {
 
         Address address = (Address)query.getSingleResult();
 
+        closeTransactionSession();
+
         return address;
     }
 
