@@ -46,15 +46,30 @@ public class ProjectService extends SessionUtil implements ProjectDao {
 
         Session session = getSession();
         Query query = session.createNativeQuery(sql).addEntity(Employee.class);
+        query.setParameter("id", id);
 
-        return null;
+        Project project = (Project) query.getSingleResult();
+        closeTransactionSession();
+
+        return project;
     }
 
     public void update(Project project) throws SQLException {
+        openTransactionSession();
 
+        Session session = getSession();
+        session.update(project);
+
+        closeTransactionSession();
     }
 
     public void remove(Project project) throws SQLException {
 
+        openTransactionSession();
+
+        Session session = getSession();
+        session.remove(project);
+
+        closeTransactionSession();
     }
 }
